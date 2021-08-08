@@ -26,9 +26,14 @@ namespace Survey.Controllers
         [HttpPost("submit")]
         public IActionResult Submit(Form newUser)
         {
-            Console.WriteLine(newUser);
+            if(ModelState.IsValid)
+            {
             return RedirectToAction("results", newUser);
+            }
+            Console.WriteLine(newUser);
+            return View("Index");
         }
+
 
         [HttpGet("results")]
         public IActionResult Results(Form newUser)
